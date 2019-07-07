@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="dao.StockDao">
+    <select id="SZsingleStock" parameterType="String" resultType="Map">
+          select SZ_Stock_date as datime,
+          SZ_Stock_end as price
+          from SZ_Stock
+          where SZ_Stock_code==#{stockCode}
+    </select>
+
+    <select id="SHsingleStock" parameterType="String" resultType="Map">
+          select SH_Stock_date as datime,
+          SH_Stock_end as price
+          from SH_Stock
+          where SH_Stock_code==#{stockCode}
+    </select>
+
+    <select id="listStock" parameterType="int" resultType="String">
+          select Stock_code from stock_list limit #{id},#{id+40};
+    </select>
+
+    <select id="SHsalayUptoFive" parameterType="String" resultType="Map">
+          select SH_Stock_date as datime
+          SH_Stock_start as sprice
+          SH_Stock_end as eprice
+          from SH_Stock where SH_Stock_code==#{stockCode} and (SH_Stock_start-SH_Stock_end)/SH_Stock_start &lt; 0.05 and (SH_Stock_start-SH_Stock_end)/SH_Stock_start &gt; -0.05;
+    </select>
+
+    <select id="SZsalayUptoFive" parameterType="String" resultType="Map">
+          select SZ_Stock_date as datime
+          SZ_Stock_start as sprice
+          SZ_Stock_end as eprice
+          from SZ_Stock where SZ_Stock_code==#{stockCode} and (SZ_Stock_start-SZ_Stock_end)/SZ_Stock_start &lt; 0.05 and (SZ_Stock_start-SZ_Stock_end)/SZ_Stock_start &gt; -0.05;
+    </select>
+</mapper>    
