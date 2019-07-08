@@ -40,14 +40,14 @@ $(function () {
     function showStock(list) {
         var result = "日期，价格";
         for (var i = 0; i < list.length; i++) {
-            result += list[i].get("datime") + "，" + list[i].get("end") + "<br>";
+            result += list[i].datime + "，" + list[i].end+ "<br>";
         }
         $("pre").html(result);
     }
         function showrecen(list) {
             var result="日期，最高价格，最低价格";
             for (var i = 0; i < list.length; i++) {
-                result+=list[i].get("datime")+ "，"+list[i].get("sprice")+"，"+list[i].get("eprice")+"<br>";
+                result+=list[i].datime+ "，"+list[i].sprice+"，"+list[i].eprice+"<br>";
             }
             $("pre").html(result);
             }

@@ -24,11 +24,13 @@ public class Controle {
     public JsonResult listStock(int page) {
         ArrayList<Map<String,Object>> list=null;
         try {
+            System.out.println("第几页"+page);
             list=stockservice.listStock(page*40);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(list);
+       // JsonResult jr=new JsonResult(list);
+       // System.out.println(jr.getData());
         return new JsonResult(list);
     }
 

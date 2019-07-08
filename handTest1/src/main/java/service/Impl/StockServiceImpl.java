@@ -56,19 +56,19 @@ public class StockServiceImpl implements StockService {
             if (conn.getResponseCode() == 200) {
                 //用getInputStream()方法获得服务器返回的输入流
                 InputStream in = conn.getInputStream();
-                BufferedReader br=new BufferedReader(new InputStreamReader(in));
-                temp=br.readLine();
-                temp=temp.substring(21,temp.length()-2);
+                BufferedReader br = new BufferedReader(new InputStreamReader(in));
+                temp = br.readLine();
+                temp = temp.substring(21, temp.length() - 2);
                 br.close();
             }
-            String team[]=temp.split(",");
+            String team[]=temp.split("\\,");
             map.put("name",team[0]);
             map.put("code",code);
             map.put("yesterday",team[2]);
             map.put("today",team[1]);
             map.put("now",team[3]);
             result.add(map);
-            map.clear();
+            map=new HashMap<String, Object>();
         }
         return result;
     }

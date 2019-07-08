@@ -9,7 +9,7 @@ public class JsonResult implements Serializable {
      *
      */
     private static final long serialVersionUID = 1L;
-    public static final int SUCCESS=0;
+    public static final int SUCCESS=200;
     public static final int USERNAMEERROR=1;
     public static final int PASSWORDERROR=2;
     public static final int OTHERERROR=3;
