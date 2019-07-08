@@ -28,6 +28,7 @@ public class StockServiceImpl implements StockService {
         else if (stockCode.charAt(1)=='z'){
             list=(ArrayList)stockdao.SHsingleStock(stockCode);
         }
+        System.out.println(list);
         return list;
     }
     @ResponseBody

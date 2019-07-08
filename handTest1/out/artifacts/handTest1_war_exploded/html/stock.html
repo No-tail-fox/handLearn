@@ -2,6 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
 <title>股票信息</title>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="text/javascript" src="../js/stock.js"></script>
 <style type="text/css">
 <!--
 .form th {
@@ -49,9 +51,9 @@ background-color: transparent;
 </head>
 <body>
 <form action="" method="post" name="form1" class="form" id="form1">
-  
-  <input type="submit" name="history" value="历史数据">
-  <input type="reset" name="recently" value="进半个月的更新">
+
+  <button type="button" name="hist"  onclick="hists()">历史数据</button>
+  <<button type="button" name="rece"  onclick="recently()">近半个月的更新</button>
   <pre style="word-wrap: break-word; white-space: pre-wrap;"></pre>
 </form>
 </body></html>

@@ -1,20 +1,10 @@
-$(function () {
 
-    //on()方法绑定事件可以区别事件源
-    //click()方法绑定事件，无法区别事件源
-    var code=$.query.get("code");
-    $("form[name=\'form1\']").data("code",code);
-    //当加载这个网页时，注册按钮
-    $("input[name=\'history\']") .on('click', '.online', hist);
-    $("input[name=\'recently\']") .on('click', '.online', recently);
-});
-
-        function hist() {
+function hists() {
         var url="/stock/single.do";
-        var code=$.query.get("code");
+        var code=getUrlParam("code");
         var data = {code: code};
         $.getJSON(url, data, function (result) {
-            if (result.state == SUCCESS) {
+            if (result.state == 200) {
                 var list = result.data;
                 showStock(list);
             } else {
@@ -25,10 +15,10 @@ $(function () {
     
     function recently() {
         var url="/stock/change.do";
-        var code=$.query.get("code");
+        var code=getUrlParam("code");
         var data = {code: code};
         $.getJSON(url, data, function (result) {
-            if (result.state == SUCCESS) {
+            if (result.state == 200) {
                 var list = result.data;
                 showrecen(list);
             } else {
@@ -51,6 +41,10 @@ $(function () {
             }
             $("pre").html(result);
             }
-
+function getUrlParam(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+    if (r != null) return parseInt(unescape(r[2])); return null; //返回参数值
+}
 
 
