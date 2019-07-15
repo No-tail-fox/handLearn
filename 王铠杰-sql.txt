@@ -153,7 +153,7 @@ having count(core.course_no)<(select count(course.course_no) from hand_course as
 from hand_student
 where STUDENT_NO in (select core1.STUDENT_NO
 from hand_student_core as core1,hand_student_core as core2
-where core1.course_no='c001' and core2.course_no='c002' and core1.core>core2.core)
+where core1.course_no='c001' and core1.student_no=core2.student_no and core2.course_no='c002' and core1.core>core2.core)
                   
 4、按各科平均成绩和及格率的百分数，按及格率高到低顺序，显示（课程号、平均分、及格率）
 	
