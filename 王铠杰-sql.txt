@@ -220,10 +220,11 @@ where t1.teacher_name = '胡明星' and t1.manager_no=t2.teacher_no
 	where c1.student_no=c2.student_no and c1.core>c2.core and c2.course_no=course.course_no and course.course_name='J2SE' and c1.student_no=student.student_no
    
 14、分别根据教师、课程、教师和课程三个条件统计选课的学生数量：(使用rollup),显示（教师名称、课程名称、选课数量）
- select teacher.teacher_name,course.course_name,count(1) as num
+ select course.course_name,teacher.teacher_name,count(core.STUDENT_NO) as num
 from hand_student_core as core,hand_teacher as teacher,hand_course as course
 where core.course_no = course.course_no and teacher.teacher_no = course.teacher_no
-group by (teacher.teacher_name,course.course_name) with rollup
+group by course.course_name,teacher.teacher_name with rollup
+
 
 15、查询所有课程成绩前三名的按照升序排在最开头，其余数据排序保持默认（7分）,显示（学号、成绩）
 
