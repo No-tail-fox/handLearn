@@ -172,11 +172,12 @@ where student.student_age = students.maxage or students.maxage = student.student
 6、统计列出矩阵类型各分数段人数，横轴为分数段[100-85]、[85-70]、[70-60]、[<60]，纵轴为课程号、课程名称
  
 7、查询各科成绩前三名的记录:(不考虑成绩并列情况)，显示（学号、课程号、分数）
-select core.student_no,core.course_no,core.core 
-from(select core.student_no,core.course_no,core.core,
-	DENSE_RANK () OVER ( PARTITION BY core.course_no ORDER BY core.core DESC ) as ranks 
-    from hand_student_core as core ) as core
-where ranks < 4;
+select core.CORE,core.STUDENT_NO,core.COURSE_NO
+from hand_student_core as core
+group by core.core,core.student_no,core.COURSE_NO
+order by core.core desc
+
+
  
 8、查询选修“谌燕”老师所授课程的学生中每科成绩最高的学生，显示（学号、姓名、课程名称、成绩）
 SELECT student.student_no,b.COURSE_NO,student.STUDENT_NAME,course.COURSE_NAME
