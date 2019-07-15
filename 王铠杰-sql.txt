@@ -1,12 +1,12 @@
-sql���ˣ�
-	����ʱ�� 2Сʱ30���� ��9��10 - 11��40��
-	�����ڼ���Բ��ĸ��˵�ѧϰ���ϣ�����������ѯ���໥���ۡ��໥��������
-һ��Ҫ�� 
-	1. �Ķ� - sql���˽������
-	2. ���ݽ������Ľ������� - sql������Ŀ��д����Ӧ��sql���
+sql考核：
+	考试时长 2小时30分钟 （9：10 - 11：40）
+	考试期间可以查阅个人的学习资料，不可上网查询、相互讨论、相互借阅资料
+一、要求： 
+	1. 阅读 - sql考核建表语句
+	2. 根据建表语句的结果，完成 - sql考核题目，写出对应的sql语句
 	
 	
-����sql���˽�����䣺
+二、sql考核建表语句：
 
 Create Table  HAND_STUDENT
 (
@@ -21,12 +21,12 @@ Create Table  HAND_STUDENT
  LAST_UPDATE_DATE datetime Not Null Default CURRENT_TIMESTAMP,
  LAST_UPDATE_LOGIN BigInt Default -1
 );
-ALTER TABLE  HAND_STUDENT COMMENT 'ѧ����Ϣ��';
-ALTER TABLE  HAND_STUDENT MODIFY `STUDENT_NO` Varchar(10) Not Null Comment 'ѧ��';
-ALTER TABLE  HAND_STUDENT MODIFY `STUDENT_NAME` Varchar(20) Comment '����';
-ALTER TABLE  HAND_STUDENT MODIFY `STUDENT_AGE` BigInt Comment '����';
-ALTER TABLE  HAND_STUDENT MODIFY `STUDENT_GENDER` Varchar(5) Comment '�Ա�';
-ALTER TABLE  HAND_STUDENT MODIFY `OBJECT_VERSION_NUMBER` BigInt Not Null Default 1 Comment '�а汾�ţ�����������';
+ALTER TABLE  HAND_STUDENT COMMENT '学生信息表';
+ALTER TABLE  HAND_STUDENT MODIFY `STUDENT_NO` Varchar(10) Not Null Comment '学号';
+ALTER TABLE  HAND_STUDENT MODIFY `STUDENT_NAME` Varchar(20) Comment '姓名';
+ALTER TABLE  HAND_STUDENT MODIFY `STUDENT_AGE` BigInt Comment '年龄';
+ALTER TABLE  HAND_STUDENT MODIFY `STUDENT_GENDER` Varchar(5) Comment '性别';
+ALTER TABLE  HAND_STUDENT MODIFY `OBJECT_VERSION_NUMBER` BigInt Not Null Default 1 Comment '行版本号，用来处理锁';
 
 ALTER TABLE `HAND_STUDENT` ADD UNIQUE (`STUDENT_NO`);
 
@@ -42,11 +42,11 @@ Create Table  HAND_TEACHER
  LAST_UPDATE_DATE datetime Not Null Default CURRENT_TIMESTAMP,
  LAST_UPDATE_LOGIN BigInt Default -1
 );
-ALTER TABLE  HAND_TEACHER COMMENT '��ʦ��Ϣ��';
-ALTER TABLE  HAND_TEACHER MODIFY `TEACHER_NO` Varchar(10) Not Null Comment '��ʦ���';
-ALTER TABLE  HAND_TEACHER MODIFY `TEACHER_NAME` Varchar(20) Comment '��ʦ����';
-ALTER TABLE  HAND_TEACHER MODIFY `MANAGER_NO` Varchar(10) Comment '�ϼ����';
-ALTER TABLE  HAND_TEACHER MODIFY `OBJECT_VERSION_NUMBER` BigInt Not Null Default 1 Comment '�а汾�ţ�����������';
+ALTER TABLE  HAND_TEACHER COMMENT '教师信息表';
+ALTER TABLE  HAND_TEACHER MODIFY `TEACHER_NO` Varchar(10) Not Null Comment '教师编号';
+ALTER TABLE  HAND_TEACHER MODIFY `TEACHER_NAME` Varchar(20) Comment '教师名称';
+ALTER TABLE  HAND_TEACHER MODIFY `MANAGER_NO` Varchar(10) Comment '上级编号';
+ALTER TABLE  HAND_TEACHER MODIFY `OBJECT_VERSION_NUMBER` BigInt Not Null Default 1 Comment '行版本号，用来处理锁';
 
 ALTER TABLE `HAND_TEACHER` ADD UNIQUE (`TEACHER_NO`);
 
@@ -63,11 +63,11 @@ Create Table  HAND_COURSE
  LAST_UPDATE_DATE datetime Not Null Default CURRENT_TIMESTAMP,
  LAST_UPDATE_LOGIN BigInt Default -1
 );
-ALTER TABLE  HAND_COURSE COMMENT '�γ���Ϣ��';
-ALTER TABLE  HAND_COURSE MODIFY `COURSE_NO` Varchar(10) Not Null Comment '�γ̺�';
-ALTER TABLE  HAND_COURSE MODIFY `COURSE_NAME` Varchar(20) Comment '�γ�����';
-ALTER TABLE  HAND_COURSE MODIFY `TEACHER_NO` Varchar(10) Not Null Comment '��ʦ���';
-ALTER TABLE  HAND_COURSE MODIFY `OBJECT_VERSION_NUMBER` BigInt Not Null Default 1 Comment '�а汾�ţ�����������';
+ALTER TABLE  HAND_COURSE COMMENT '课程信息表';
+ALTER TABLE  HAND_COURSE MODIFY `COURSE_NO` Varchar(10) Not Null Comment '课程号';
+ALTER TABLE  HAND_COURSE MODIFY `COURSE_NAME` Varchar(20) Comment '课程名称';
+ALTER TABLE  HAND_COURSE MODIFY `TEACHER_NO` Varchar(10) Not Null Comment '教师编号';
+ALTER TABLE  HAND_COURSE MODIFY `OBJECT_VERSION_NUMBER` BigInt Not Null Default 1 Comment '行版本号，用来处理锁';
 
 ALTER TABLE `HAND_COURSE` ADD UNIQUE (`COURSE_NO`);
 
@@ -83,34 +83,34 @@ Create Table  HAND_STUDENT_CORE
  LAST_UPDATE_DATE datetime Not Null Default CURRENT_TIMESTAMP,
  LAST_UPDATE_LOGIN BigInt Default -1
 );
-ALTER TABLE  HAND_STUDENT_CORE COMMENT 'ѧ���ɼ���';
-ALTER TABLE  HAND_STUDENT_CORE MODIFY `STUDENT_NO` Varchar(10) Not Null Comment 'ѧ��';
-ALTER TABLE  HAND_STUDENT_CORE MODIFY `COURSE_NO` Varchar(10) Not Null Comment '�γ̺�';
-ALTER TABLE  HAND_STUDENT_CORE MODIFY `CORE` Decimal(4,2) Comment '����';
-ALTER TABLE  HAND_STUDENT_CORE MODIFY `OBJECT_VERSION_NUMBER` BigInt Not Null Default 1 Comment '�а汾�ţ�����������';
+ALTER TABLE  HAND_STUDENT_CORE COMMENT '学生成绩表';
+ALTER TABLE  HAND_STUDENT_CORE MODIFY `STUDENT_NO` Varchar(10) Not Null Comment '学号';
+ALTER TABLE  HAND_STUDENT_CORE MODIFY `COURSE_NO` Varchar(10) Not Null Comment '课程号';
+ALTER TABLE  HAND_STUDENT_CORE MODIFY `CORE` Decimal(4,2) Comment '分数';
+ALTER TABLE  HAND_STUDENT_CORE MODIFY `OBJECT_VERSION_NUMBER` BigInt Not Null Default 1 Comment '行版本号，用来处理锁';
 
 ALTER TABLE `HAND_STUDENT_CORE` ADD UNIQUE (`STUDENT_NO`,`COURSE_NO`);
 
 
 
-/*******��ʼ��ѧ����������******/
-insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s001','����',23,'��');
-insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s002','����',23,'��');
-insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s003','����',25,'��');
-insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s004','����',20,'Ů');
-insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s005','����',20,'Ů');
-insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s006','�',21,'��');
-insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s007','����',21,'��');
-insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s008','����',21,'Ů');
-insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s009','������',23,'Ů');
-insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s010','����',22,'Ů');
+/*******初始化学生表的数据******/
+insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s001','张三',23,'男');
+insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s002','李四',23,'男');
+insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s003','吴鹏',25,'男');
+insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s004','琴沁',20,'女');
+insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s005','王丽',20,'女');
+insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s006','李波',21,'男');
+insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s007','刘玉',21,'男');
+insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s008','萧蓉',21,'女');
+insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s009','陈萧晓',23,'女');
+insert into HAND_STUDENT(STUDENT_NO,STUDENT_NAME,STUDENT_AGE,STUDENT_GENDER) values ('s010','陈美',22,'女');
 commit;
-/******************��ʼ����ʦ��***********************/
-insert into HAND_TEACHER(TEACHER_NO,TEACHER_NAME,MANAGER_NO) values ('t001', '����','');
-insert into HAND_TEACHER(TEACHER_NO,TEACHER_NAME,MANAGER_NO)  values ('t002', '����','t001');
-insert into HAND_TEACHER(TEACHER_NO,TEACHER_NAME,MANAGER_NO)  values ('t003', '������','t002');
+/******************初始化教师表***********************/
+insert into HAND_TEACHER(TEACHER_NO,TEACHER_NAME,MANAGER_NO) values ('t001', '刘阳','');
+insert into HAND_TEACHER(TEACHER_NO,TEACHER_NAME,MANAGER_NO)  values ('t002', '谌燕','t001');
+insert into HAND_TEACHER(TEACHER_NO,TEACHER_NAME,MANAGER_NO)  values ('t003', '胡明星','t002');
 commit;
-/***************��ʼ���γ̱�****************************/
+/***************初始化课程表****************************/
 insert into HAND_COURSE(COURSE_NO,COURSE_NAME,TEACHER_NO) values ('c001','J2SE','t002');
 insert into HAND_COURSE(COURSE_NO,COURSE_NAME,TEACHER_NO) values ('c002','Java Web','t002');
 insert into HAND_COURSE(COURSE_NO,COURSE_NAME,TEACHER_NO) values ('c003','SSH','t001');
@@ -122,7 +122,7 @@ insert into HAND_COURSE(COURSE_NO,COURSE_NAME,TEACHER_NO) values ('c008','DIV+CS
 insert into HAND_COURSE(COURSE_NO,COURSE_NAME,TEACHER_NO) values ('c009','PHP','t003');
 insert into HAND_COURSE(COURSE_NO,COURSE_NAME,TEACHER_NO) values ('c010','EJB3.0','t002');
 commit;
-/***************��ʼ���ɼ���***********************/
+/***************初始化成绩表***********************/
 insert into HAND_STUDENT_CORE(STUDENT_NO,COURSE_NO,CORE) values ('s001','c001',58.9);
 insert into HAND_STUDENT_CORE(STUDENT_NO,COURSE_NO,CORE) values ('s002','c001',80.9);
 insert into HAND_STUDENT_CORE(STUDENT_NO,COURSE_NO,CORE) values ('s003','c001',81.9);
@@ -135,57 +135,57 @@ commit;
 	
 	
 
-����sql������Ŀ��
+三、sql考核题目：
 
-1����ѯûѧ�������ࡱ��ʦ�ε�ͬѧ����ʾ��ѧ�š�������
+1、查询没学过“谌燕”老师课的同学，显示（学号、姓名）
 select STUDENT_NO,STUDENT_NAME
 from hand_student
-where STUDENT_NO not in (select distinct a.STUDENT_NO from hand_student_core as a,hand_course as b,hand_teacher as c where a.COURSE_NO=B.COURSE_NO AND b.TEACHER_NO=c.TEACHER_NO and c.TEACHER_NAME='����')
+where STUDENT_NO not in (select distinct a.STUDENT_NO from hand_student_core as a,hand_course as b,hand_teacher as c where a.COURSE_NO=B.COURSE_NO AND b.TEACHER_NO=c.TEACHER_NO and c.TEACHER_NAME='谌燕')
 
-2����ѯû��ѧȫ���пε�ͬѧ����ʾ��ѧ�š�������
+2、查询没有学全所有课的同学，显示（学号、姓名）
 	select student.student_no,student.student_name 
 from hand_student as student left join hand_student_core as core on student.student_no = core.student_no 
 group by student.student_no,student.student_name 
 having count(core.course_no)<(select count(course.course_no) from hand_course as course)
                   
-3����ѯ��c001���γ̱ȡ�c002���γ̳ɼ��ߵ�����ѧ������ʾ��ѧ�š�������
+3、查询“c001”课程比“c002”课程成绩高的所有学生，显示（学号、姓名）
 	select student_no,student_name
 from hand_student
 where STUDENT_NO in (select core1.STUDENT_NO
 from hand_student_core as core1,hand_student_core as core2
 where core1.course_no='c001' and core2.course_no='c002' and core1.core>core2.core)
                   
-4��������ƽ���ɼ��ͼ����ʵİٷ������������ʸߵ���˳����ʾ���γ̺š�ƽ���֡������ʣ�
+4、按各科平均成绩和及格率的百分数，按及格率高到低顺序，显示（课程号、平均分、及格率）
 	
  select core.course_no,avg(core.core) as avger,(sum(case when core.core>60 then 1 else 0 end)/count(*)*100 || '%' )as percent
 from hand_student_core as core
 group by core.course_no  
 order by sum(case when core>60 then 1 else 0 end) desc
 
-5��1992��֮�������ѧ�������ҳ�����������С��ͬѧ����ʾ��ѧ�š����������䣩
+5、1992年之后出生的学生名单找出年龄最大和最小的同学，显示（学号、姓名、年龄）
 	select student.student_no,student.student_name,student.student_age 
 from hand_student as student,
 (select max(s.student_age) as maxage,min(s.student_age) as minage from hand_student as s
-where extract(year()-s.student_age>1992) as students
+where extract(YEAR(CURDATE())-s.student_age>1992) as students
 where student.student_age = students.maxage or students.maxage = student.student_age
 
-6��ͳ���г��������͸�����������������Ϊ������[100-85]��[85-70]��[70-60]��[<60]������Ϊ�γ̺š��γ�����
+6、统计列出矩阵类型各分数段人数，横轴为分数段[100-85]、[85-70]、[70-60]、[<60]，纵轴为课程号、课程名称
  
-7����ѯ���Ƴɼ�ǰ�����ļ�¼:(�����ǳɼ��������)����ʾ��ѧ�š��γ̺š�������
+7、查询各科成绩前三名的记录:(不考虑成绩并列情况)，显示（学号、课程号、分数）
 select core.student_no,core.course_no,core.core 
 from(select core.student_no,core.course_no,core.core,
 	DENSE_RANK () OVER ( PARTITION BY core.course_no ORDER BY core.core DESC ) as ranks 
     from hand_student_core as core ) as core
 where ranks < 4;
  
-8����ѯѡ�ޡ����ࡱ��ʦ���ڿγ̵�ѧ����ÿ�Ƴɼ���ߵ�ѧ������ʾ��ѧ�š��������γ����ơ��ɼ���
+8、查询选修“谌燕”老师所授课程的学生中每科成绩最高的学生，显示（学号、姓名、课程名称、成绩）
 SELECT student.student_no,b.COURSE_NO,student.STUDENT_NAME,course.COURSE_NAME
 from hand_student_core,hand_course as course,hand_student as student,hand_teacher as teacher,
 (SELECT COURSE_NO, MAX(core) as score from hand_student_core GROUP BY COURSE_NO ) as b 
-WHERE course.teacher_no=teacher.teacher_no and teacher.teacher_name='����' and hand_student_core.core = b.score and hand_student_core.COURSE_NO = b.COURSE_NO and hand_student_core.STUDENT_NO=student.student_NO AND course.course_no=hand_student_core.COURSE_NO; 
+WHERE course.teacher_no=teacher.teacher_no and teacher.teacher_name='谌燕' and hand_student_core.core = b.score and hand_student_core.COURSE_NO = b.COURSE_NO and hand_student_core.STUDENT_NO=student.student_NO AND course.course_no=hand_student_core.COURSE_NO; 
 
                     
-9����ѯ���ż����ϲ�����γ̵�ͬѧ��ƽ���ɼ�����ʾ��ѧ�š�������ƽ���ɼ���������λС������
+9、查询两门及以上不及格课程的同学及平均成绩，显示（学号、姓名、平均成绩（保留两位小数））
 	SELECT student.student_no,student.student_name,ROUND(AVG( core.core ),2) as avg_c 
 FROM hand_student_core as core,hand_student as student 
 WHERE EXISTS (
@@ -196,31 +196,35 @@ GROUP BY c.student_no
 HAVING COUNT( c.student_no ) > 1 ) 
 AND student.student_no = core.student_no 
 GROUP BY core.student_no,student.student_name;
-10����ѯ������������ѧ����������ʾ��ѧ�š�������������
+10、查询姓氏数量最多的学生名单，显示（学号、姓名、人数）
 	
-11����ѯ�γ�����Ϊ��J2SE����ѧ���ɼ���Ϣ��90����Ϊ�����㡱��80-90Ϊ�����á���60-80Ϊ�����񡱡�60������Ϊ�������񡱣���ʾ��ѧ�š��������γ����ơ��ɼ����ȼ���
+11、查询课程名称为“J2SE”的学生成绩信息，90以上为“优秀”、80-90为“良好”、60-80为“及格”、60分以下为“不及格”，显示（学号、姓名、课程名称、成绩、等级）
    select student.student_no,student.student_name, course.course_name, core.core, 
 CASE 
-WHEN core.core >= 90 THEN '����' 
-WHEN core.core < 90 AND core.core >= 80 THEN '����' 
-WHEN core.core < 80 AND core.core >= 60 THEN '����'
-WHEN core.core < 60 THEN '������'
+WHEN core.core >= 90 THEN '优秀' 
+WHEN core.core < 90 AND core.core >= 80 THEN '良好' 
+WHEN core.core < 80 AND core.core >= 60 THEN '及格'
+WHEN core.core < 60 THEN '不及格'
 END as class
 from hand_student_core as core, hand_course as course, hand_student as student 
 where core.course_no =course.course_no and core.student_no=student.student_no and course.course_name ='J2SE';
 
-12����ѯ��ʦ�������ǡ����������ܼ�����:�������ܵĽ�ʦҲ��Ҫ��ʾ������ʾ����ʦ��š���ʦ���ơ����ܱ�š��������ƣ�
+12、查询教师“胡明星”的所有主管及姓名:（无主管的教师也需要显示），显示（教师编号、教师名称、主管编号、主管名称）
 SELECT t1.teacher_no,t1.teacher_name,t1.manager_no,t2.teacher_name as manager_name 
 FROM hand_teacher t1 LEFT JOIN hand_teacher t2 ON t1.manager_no = t2.teacher_no 
-where t1.teacher_name = '������' and t1.manager_no=t2.teacher_no
+where t1.teacher_name = '胡明星' and t1.manager_no=t2.teacher_no
 
-13����ѯ�������ڿγ̡�J2SE��������ѧ���γ���Ϣ����ʾ��ѧ�ţ��������γ����ơ�������
+13、查询分数高于课程“J2SE”的所有学生课程信息，显示（学号，姓名，课程名称、分数）
 	select c1.STUDENT_NO,student.STUDENT_NAME,course.COURSE_NAME,c1.CORE
 	from hand_student_core as c1,hand_student_core as c2,hand_course as course,hand_student as student
 	where c1.student_no=c2.student_no and c1.core>c2.core and c2.course_no=course.course_no and course.course_name='J2SE' and c1.student_no=student.student_no
    
-14���ֱ���ݽ�ʦ���γ̡���ʦ�Ϳγ���������ͳ��ѡ�ε�ѧ��������(ʹ��rollup),��ʾ����ʦ���ơ��γ����ơ�ѡ��������
- 
-15����ѯ���пγ̳ɼ�ǰ�����İ������������ͷ�������������򱣳�Ĭ�ϣ�7�֣�,��ʾ��ѧ�š��ɼ���
+14、分别根据教师、课程、教师和课程三个条件统计选课的学生数量：(使用rollup),显示（教师名称、课程名称、选课数量）
+ select teacher.teacher_name,course.course_name,count(1) as num
+from hand_student_core as core,hand_teacher as teacher,hand_course as course
+where core.course_no = course.course_no and teacher.teacher_no = course.teacher_no
+group by (teacher.teacher_name,course.course_name) with rollup
+
+15、查询所有课程成绩前三名的按照升序排在最开头，其余数据排序保持默认（7分）,显示（学号、成绩）
 
 
